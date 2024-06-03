@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation';
 import prisma from './prisma';
-import { revalidatePath } from 'next/cache';
 
 export const createCar = async (formData: FormData) => {
   const brandId = formData.get('brandId')?.toString();
