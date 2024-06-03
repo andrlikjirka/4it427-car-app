@@ -1,6 +1,7 @@
 import prisma from '@/utils/prisma';
 import CarDetail from '@/components/CarDetail';
 import Link from 'next/link';
+import NotFound from 'next/dist/client/components/not-found-error';
 
 const fetchCarDetail = async (id: string) => {
   const car = await prisma.car.findUnique({
@@ -17,6 +18,7 @@ const fetchCarDetail = async (id: string) => {
 
 const CarDetailPage = async ({ params }: { params: { id: string } }) => {
   const car = await fetchCarDetail(params.id);
+  if (!car) return NotFound();
 
   return (
     <div>
