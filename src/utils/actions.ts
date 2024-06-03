@@ -5,8 +5,8 @@ import prisma from './prisma';
 import { revalidatePath } from 'next/cache';
 
 export const createCar = async (formData: FormData) => {
-  const modelId = formData.get('modelId')?.toString();
   const brandId = formData.get('brandId')?.toString();
+  const modelId = formData.get('modelId')?.toString();
   const location = formData.get('location')?.toString();
   const year = Number(formData.get('year'));
   const color = formData.get('color')?.toString();
@@ -17,8 +17,8 @@ export const createCar = async (formData: FormData) => {
   const description = formData.get('description')?.toString();
 
   if (
-    !modelId ||
     !brandId ||
+    !modelId ||
     !location ||
     !year ||
     !color ||

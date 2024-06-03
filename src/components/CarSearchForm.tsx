@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import CarList from '@/components/CarList';
 import Input from '@/components/Input';
+import { Brand } from '@prisma/client';
+import Select from '@/components/Select';
 
 async function fetchBrands() {
   const res = await fetch('/api/brands');
@@ -11,8 +13,7 @@ async function fetchBrands() {
     throw new Error(`brands fetch not ok`);
   }
   const brands = await res.json();
-  const names = brands.map((brand: any) => brand.name);
-  return names;
+  return brands;
 }
 
 async function fetchModelList({ queryKey }: any) {
@@ -90,44 +91,26 @@ const CarSearchForm = () => {
             type="text"
             name="location"
           ></Input>
-          <div className="text-left mb-3">
-            <label htmlFor="brand" className="block text-sm font-bold mb-1">
-              Značka
-            </label>
-            <select
-              className="w-full border rounded bg-transparent text-base p-2 border-solid border-gray-300"
-              name="brand"
-              id="brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-              disabled={brands.isFetching}
-            >
-              <option value={''} />
-              {brands?.data?.map((brand: string) => (
-                <option key={brand} value={brand}>
-                  {brand}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="text-left mb-3">
-            <label htmlFor="model" className="block text-sm font-bold mb-1">
-              Model
-            </label>
-            <select
-              className="w-full border rounded bg-transparent text-base p-2 border-solid border-gray-300"
-              name="model"
-              id="model"
-              disabled={!models?.data?.length}
-            >
-              <option value={''} />
-              {models.data?.map((model: any) => (
-                <option key={model.id} value={model.name}>
-                  {model.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Select
+            label="Značka"
+            id="brand"
+            name="brand"
+            valueType="name"
+            value={brand}
+            options={brands.data}
+            disabled={brands.isFetching}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setBrand(e.target.value)
+            }
+          ></Select>
+          <Select
+            label="Model"
+            id="model"
+            name="model"
+            valueType="name"
+            options={models.data}
+            disabled={!models?.data?.length}
+          ></Select>
           <button className="bg-white rounded-md text-gray-800 py-2 hover:bg-gray-100 mt-4">
             Search
           </button>
