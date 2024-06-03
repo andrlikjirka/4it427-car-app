@@ -1,23 +1,11 @@
-import CarList from '@/components/CarList';
-import prisma from '@/utils/prisma';
-
-const getCars = async () => {
-  const cars = await prisma.car.findMany({
-    include: {
-      model: true,
-      brand: true,
-    },
-  });
-  return cars;
-};
-
 const HomePage = async () => {
-  const cars = await getCars();
   return (
-    <div>
-      Home Page
-      <CarList cars={cars} />
-    </div>
+    <section className="text-center">
+      <h1 className="text-3xl font-bold mb-6">Vítejte!</h1>
+      <p className="text-lg mb-4">
+        Autobazar Bleska McQueena je nejlepší místo na nákup vašeho auta.
+      </p>
+    </section>
   );
 };
 

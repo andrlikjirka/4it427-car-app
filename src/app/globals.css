@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    @apply box-border;
+}
+
+body {
+    @apply text-[#e1eeeb] min-h-screen m-0;
+    font-family: "Quicksand", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: radial-gradient(#442c2c, #1a1f1d);
+}
+
+main {
+    min-height: 400px;
+}
+
+.search-cars {
+    @apply max-w-[40rem] rounded-md mx-auto my-8 p-2;
+    background: linear-gradient(180deg, rgba(126, 48, 48, 0.66), rgba(153, 43, 43, 0.69));
+}
+

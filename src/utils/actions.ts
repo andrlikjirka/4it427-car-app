@@ -1,15 +1,15 @@
-'use server'
+'use server';
 
-import { redirect } from 'next/navigation'
-import prisma from './prisma'
+import { redirect } from 'next/navigation';
+import prisma from './prisma';
 
 export const createCar = async (formData: FormData) => {
-  const modelId = formData.get('modelId')?.toString()
-  const brandId = formData.get('brandId')?.toString()
-  const description = formData.get('description')?.toString()
+  const modelId = formData.get('modelId')?.toString();
+  const brandId = formData.get('brandId')?.toString();
+  const description = formData.get('description')?.toString();
 
   if (!modelId || !brandId || !description) {
-    return
+    return;
   }
 
   await prisma.car.create({
@@ -18,7 +18,17 @@ export const createCar = async (formData: FormData) => {
       brandId: brandId,
       description: description,
     },
-  })
+  });
 
-  redirect('/')
-}
+  redirect('/');
+};
+
+export const getCars = async () => {
+  const cars = await prisma.car.findMany({
+    include: {
+      model: true,
+      brand: true,
+    },
+  });
+  return cars;
+};
