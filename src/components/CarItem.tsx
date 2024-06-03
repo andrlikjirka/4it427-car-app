@@ -10,7 +10,7 @@ const CarItem = ({ car }: { car: CarWithDeps }) => {
             {car.brand.name} {car.model.name}
           </h2>
           <p className="text-white">
-            {`${car.color} - ${car.location} - ${car.price} CZK`}
+            {`${car.color} - ${car.location} - ${car.price} Kč`}
           </p>
         </div>
       </div>

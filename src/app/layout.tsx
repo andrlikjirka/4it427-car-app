@@ -21,7 +21,7 @@ export default function Layout({
       <body className={inter.className}>
         <Header></Header>
         <main className="container mx-auto p-2">
-          <div className="mx-10">{children}</div>
+          <div className="mx-20">{children}</div>
         </main>
         <Footer></Footer>
       </body>
