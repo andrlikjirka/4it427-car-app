@@ -17,6 +17,9 @@ model Car {
   price       Float?
   color       String?
   year        Int?
+  mileage      Int?
+  power       Int?
+  fuel        String?
   model       CarModel @relation(fields: [modelId], references: [id])
   modelId     String
   brand       Brand    @relation(fields: [brandId], references: [id])

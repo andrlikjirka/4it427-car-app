@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Car" ADD COLUMN "fuel" TEXT;
+ALTER TABLE "Car" ADD COLUMN "mileage" INTEGER;
+ALTER TABLE "Car" ADD COLUMN "power" INTEGER;
