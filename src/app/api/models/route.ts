@@ -13,5 +13,8 @@ export const GET = async (request: NextRequest) => {
       brand: true, // Optional: if you want to include brand details
     },
   });
-  return NextResponse.json(data);
+  return NextResponse.json(data, {
+    status: 200,
+    statusText: 'Car models fetched',
+  });
 };

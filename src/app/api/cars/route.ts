@@ -21,5 +21,5 @@ export const GET = async (request: NextRequest) => {
       model: true,
     },
   });
-  return NextResponse.json(data);
+  return NextResponse.json(data, { status: 200, statusText: 'Cars fetched' });
 };
