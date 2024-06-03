@@ -1,7 +1,13 @@
 import CarItem from './CarItem';
 import Loader from '@/components/Loader';
+import { CarWithDeps } from '@/types/prismaTypes';
 
-const CarList = ({ cars, isLoading }: any) => {
+type Props = {
+  cars: CarWithDeps[];
+  isLoading: boolean;
+};
+
+const CarList = ({ cars, isLoading }: Props) => {
   return (
     <div className={isLoading ? 'opacity-80' : ''}>
       <div className="container mx-auto mt-16">
