@@ -17,8 +17,10 @@ const NewCarPage = async () => {
 
   return (
     <div>
-      New Car
-      <NewCarForm brands={brands} models={models} />
+      <section className="text-center">
+        <h1 className="text-3xl font-bold mb-6">Nové auto</h1>
+        <NewCarForm brands={brands} models={models} />
+      </section>
     </div>
   );
 };

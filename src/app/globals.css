@@ -18,7 +18,7 @@ main {
     min-height: 400px;
 }
 
-.search-cars {
+form {
     @apply max-w-[40rem] rounded-md mx-auto my-8 p-2;
     background: linear-gradient(180deg, rgba(126, 48, 48, 0.66), rgba(153, 43, 43, 0.69));
 }

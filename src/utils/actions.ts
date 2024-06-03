@@ -2,13 +2,32 @@
 
 import { redirect } from 'next/navigation';
 import prisma from './prisma';
+import { revalidatePath } from 'next/cache';
 
 export const createCar = async (formData: FormData) => {
   const modelId = formData.get('modelId')?.toString();
   const brandId = formData.get('brandId')?.toString();
+  const location = formData.get('location')?.toString();
+  const year = Number(formData.get('year'));
+  const color = formData.get('color')?.toString();
+  const power = Number(formData.get('power'));
+  const mileage = Number(formData.get('mileage'));
+  const fuel = formData.get('fuel')?.toString();
+  const price = Number(formData.get('price'));
   const description = formData.get('description')?.toString();
 
-  if (!modelId || !brandId || !description) {
+  if (
+    !modelId ||
+    !brandId ||
+    !location ||
+    !year ||
+    !color ||
+    !power ||
+    !mileage ||
+    !fuel ||
+    !price ||
+    !description
+  ) {
     return;
   }
 
@@ -16,19 +35,16 @@ export const createCar = async (formData: FormData) => {
     data: {
       modelId: modelId,
       brandId: brandId,
+      location: location,
+      year: Number(year),
+      color: color,
+      power: Number(power),
+      mileage: Number(mileage),
+      fuel: fuel,
+      price: Number(price),
       description: description,
     },
   });
 
   redirect('/');
-};
-
-export const getCars = async () => {
-  const cars = await prisma.car.findMany({
-    include: {
-      model: true,
-      brand: true,
-    },
-  });
-  return cars;
 };

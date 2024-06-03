@@ -15,7 +15,7 @@ const CarList = ({ cars, isLoading }: Props) => {
         {cars?.length === 0 && !isLoading ? (
           <h2 className="text-center">Žádné výsledky</h2>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cars?.map((car: any) => <CarItem key={car.id} car={car} />)}
           </div>
         )}

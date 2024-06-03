@@ -1,10 +1,9 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import useFetch from '@/app/hooks/useFetch';
 import CarList from '@/components/CarList';
-import Loader from '@/components/Loader';
+import Input from '@/components/Input';
 
 async function fetchBrands() {
   const res = await fetch('/api/brands');
@@ -47,11 +46,11 @@ const CarSearchForm = () => {
     brand: '',
   });
 
-  const {
-    fetchedData: brands,
-    isFetching: isFetchingBrands,
-    error: errorBrands,
-  } = useFetch(fetchBrands, []);
+  const brands = useQuery({
+    queryKey: [],
+    queryFn: fetchBrands,
+    enabled: true,
+  });
 
   const [brand, setBrand] = useState('');
 
@@ -85,17 +84,12 @@ const CarSearchForm = () => {
             setSearchParams(obj);
           }}
         >
-          <div className="text-left mb-3">
-            <label htmlFor="location" className="block text-sm font-bold mb-1">
-              Lokace
-            </label>
-            <input
-              type="text"
-              name="location"
-              id="location"
-              className="w-full border rounded bg-transparent text-base p-2 border-solid border-gray-300"
-            />
-          </div>
+          <Input
+            label="Lokace"
+            id="location"
+            type="text"
+            name="location"
+          ></Input>
           <div className="text-left mb-3">
             <label htmlFor="brand" className="block text-sm font-bold mb-1">
               Značka
@@ -106,10 +100,10 @@ const CarSearchForm = () => {
               id="brand"
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
-              disabled={isFetchingBrands}
+              disabled={brands.isFetching}
             >
               <option value={''} />
-              {brands.map((brand: string) => (
+              {brands?.data?.map((brand: string) => (
                 <option key={brand} value={brand}>
                   {brand}
                 </option>

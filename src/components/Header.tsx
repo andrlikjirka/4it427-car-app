@@ -23,7 +23,7 @@ const Header = () => {
           <Link href="/cars" className="font-medium hover:text-gray-400">
             Nabízená auta
           </Link>
-          <Link href="/" className="font-medium hover:text-gray-400">
+          <Link href="/cars/new" className="font-medium hover:text-gray-400">
             Přidat auto
           </Link>
         </div>
